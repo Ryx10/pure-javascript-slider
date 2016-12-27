@@ -3,13 +3,13 @@ var simpleSlider = function(options){
     this.slides = document.querySelectorAll(options.selector + ' li');
     this.counter = 0;
 };
-
 simpleSlider.prototype.slidesStyle = function(){
     var vievportWidth = this.slider.parentNode.offsetWidth * this.slides.length;
     var slideWidth = vievportWidth / this.slides.length;
     this.slider.style.width = vievportWidth + 'px';
-    this.slider.parentNode. style.overflow = 'hidden';
     this.slider.style.transition = 'transform 0.3s ease';
+    this.slider.parentNode.style.overflow = 'hidden';
+    this.slider.parentNode.style.position = 'relative';
     for(var slide of this.slides){
         slide.style.width = slideWidth +'px';
         slide.style.display = "block";
@@ -30,7 +30,7 @@ simpleSlider.prototype.slideLeft = function(){
 simpleSlider.prototype.sliderFunc = null;
 simpleSlider.prototype.intervalSlide = function(){
     this.sliderFunc = setInterval(this.slideRight.bind(this), 3000);
-}
+};
 simpleSlider.prototype.stopInterval = function(){
     window.clearInterval(this.sliderFunc);
 };
