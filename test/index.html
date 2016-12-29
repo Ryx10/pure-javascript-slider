@@ -18,20 +18,47 @@
     <li><img src="http://media.gettyimages.com/photos/burbank-united-states-picture-showing-the-logo-of-the-nbc-television-picture-id72149286" alt=""></li>
 </ul>
 </div>
+<div style="width: 800px; ">
+    <ul class="simpleSliderFade">
+        <li><img src="http://media.gettyimages.com/photos/reveler-poses-for-a-picture-as-he-takes-part-in-the-zambo-carnival-picture-id515390668" alt=""></li>
+        <li><a href="#"><img src="http://media.gettyimages.com/photos/lone-male-impala-picture-id182052434" alt=""></a></li>
+        <li><img src="http://media.istockphoto.com/photos/american-staffordshire-terrier-dog-with-fun-staffordshire-bull-picture-id484965944" alt=""></li>
+        <li><img src="http://media.gettyimages.com/photos/9th-march-1946-children-play-in-the-debris-of-a-london-bomb-site-picture-id3249347" alt=""></li>
+        <li><img src="http://media.gettyimages.com/photos/burbank-united-states-picture-showing-the-logo-of-the-nbc-television-picture-id72149286" alt=""></li>
+    </ul>
+</div>
 <style>
     *{
         padding: 0;
         margin: 0;
     }
 </style>
+<div style="width: 600px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    padding: 0px;
+    position: absolute;"><img style = "width: 100%" src="http://media.gettyimages.com/photos/lone-male-impala-picture-id182052434" alt=""></div>
+<div style="width: 600px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    padding: 0px;
+    position: absolute;"><img style = "width: 100%" src="http://media.gettyimages.com/photos/burbank-united-states-picture-showing-the-logo-of-the-nbc-television-picture-id72149286" alt=""></div>
 <script>
     var x = new simpleSlider({
         selector: '.simpleSlider',
-        interval: 2000,
         navigationColor: '#f00',
-        animationSpeed: 0.3
+        animationSpeed: 0.3,
+
     });
+    var y = new simpleSlider({
+        selector: '.simpleSliderFade',
+        type: 'fadeIn',
+        imgPadding: '0 15'
+    })
     x.init();
+    y.init();
 </script>
 </body>
 </html>
