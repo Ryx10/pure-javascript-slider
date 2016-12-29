@@ -1,0 +1,27 @@
+{
+  "name": "pure_js_slider",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Ryx10/pure-javascript-slider.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ryx10/pure-javascript-slider/issues"
+  },
+  "homepage": "https://github.com/Ryx10/pure-javascript-slider#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-uglify": "^2.0.0",
+    "pump": "^1.0.2"
+  }
+}

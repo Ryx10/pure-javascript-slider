@@ -10,10 +10,10 @@ var simpleSlider = function(options){
     this.counter = 0;
 };
 simpleSlider.prototype.addStyle = function(){
-    for(var slide of this.slides){
+    [].forEach.call(this.slides, function(slide){
         slide.style.cssText +=  'box-sizing: border-box;' +
                                 'padding: ' + this.imgPadding + 'px;';
-    }
+    });
 };
 
 /* Slide */
@@ -25,12 +25,12 @@ simpleSlider.prototype.slideStyle = function(){
     this.slider.style.transition = 'transform ' + this.animationSpeed + 's ease';
     this.slider.parentNode.style.overflow = 'hidden';
     this.slider.parentNode.style.position = 'relative';
-    for(var slide of this.slides){
+    [].forEach.call(this.slides, function(slide){
         slide.style.width = slideWidth +'px';
         slide.style.display = "block";
         slide.style.float = "left";
         slide.children[0].style.width = '100%';
-    }
+    });
 };
 simpleSlider.prototype.slideRight = function(){
     this.counter += 100 / this.slides.length;
@@ -84,7 +84,7 @@ simpleSlider.prototype.slideNavigation = function(){
 
 simpleSlider.prototype.fadeInStyle = function(){
     this.slider.style.cssText += 'position: relative; width: 100%';
-    for(var slide of this.slides){
+    [].forEach.call(this.slides, function(slide){
         slide.style.cssText +=  'position: absolute; ' +
                                 'width: 100%; ' +
                                 'opacity:0;' +
@@ -93,7 +93,7 @@ simpleSlider.prototype.fadeInStyle = function(){
         if(slide.querySelector('a')) slide.querySelector('a').style.cssText += 'display: block; position: relative; z-index:1';
 
         slide.querySelector('img').style.width = '100%';
-    }
+    });
     this.slider.style.height = this.slides[0].querySelector('img').offsetHeight + 'px';
 };
 simpleSlider.prototype.rightFadeIn = function(){
