@@ -9,7 +9,7 @@
     <script src="../src/index.js"></script>
 </head>
 <body>
-<div style="width: 50%; margin:auto">
+<div style="width: 800px; ">
 <ul class="simpleSlider">
     <li><img src="http://media.gettyimages.com/photos/reveler-poses-for-a-picture-as-he-takes-part-in-the-zambo-carnival-picture-id515390668" alt=""></li>
     <li><img src="http://media.gettyimages.com/photos/lone-male-impala-picture-id182052434" alt=""></li>
@@ -25,7 +25,13 @@
     }
 </style>
 <script>
-    var x = new simpleSlider({selector: '.simpleSlider'});
+    var x = new simpleSlider({
+        selector: '.simpleSlider',
+        interval: 2000,
+        navigationColor: '#f00',
+        animationSpeed: 0.3
+    });
+    x.init();
 </script>
 </body>
 </html>
