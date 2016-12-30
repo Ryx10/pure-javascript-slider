@@ -21,6 +21,9 @@
   "homepage": "https://github.com/Ryx10/pure-javascript-slider#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
     "gulp-uglify": "^2.0.0",
     "pump": "^1.0.2"
   },
