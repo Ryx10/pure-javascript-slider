@@ -14,6 +14,7 @@ simpleSlider.prototype.addStyle = function(){
         slide.style.cssText +=  'box-sizing: border-box;' +
                                 'padding: ' + this.imgPadding + 'px;';
     });
+    this.slider.parentNode.style.position = 'relative';
 };
 
 /* Slide */
@@ -24,7 +25,6 @@ simpleSlider.prototype.slideStyle = function(){
     this.slider.style.width = vievportWidth + 'px';
     this.slider.style.transition = 'transform ' + this.animationSpeed + 's ease';
     this.slider.parentNode.style.overflow = 'hidden';
-    this.slider.parentNode.style.position = 'relative';
     [].forEach.call(this.slides, function(slide){
         slide.style.width = slideWidth +'px';
         slide.style.display = "block";
@@ -55,7 +55,8 @@ simpleSlider.prototype.slideNavigation = function(){
         'border-left:2px solid' +  this.navigationColor + '; ' +
         'border-bottom:2px solid' +  this.navigationColor + ';' +
         'transform:translateY(-50%) rotate(45deg);' +
-        'cursor:pointer;';
+        'cursor:pointer;' +
+        'z-index: 99';
     right.style.cssText +=  'position: absolute;' +
         ' width: 25px; ' +
         'height:25px; ' +
@@ -64,7 +65,8 @@ simpleSlider.prototype.slideNavigation = function(){
         'border-right:2px solid' +  this.navigationColor + '; ' +
         'border-bottom:2px solid' +  this.navigationColor + ';' +
         'transform:translateY(-50%) rotate(-45deg);' +
-        'cursor:pointer;';
+        'cursor:pointer; ' +
+        'z-index: 99';
     this.slider.parentNode.append(left, right);
     left.addEventListener('click', function(){
         this.slideLeft();
@@ -93,16 +95,65 @@ simpleSlider.prototype.fadeInStyle = function(){
         if(slide.querySelector('a')) slide.querySelector('a').style.cssText += 'display: block; position: relative; z-index:1';
 
         slide.querySelector('img').style.width = '100%';
-    });
+    }.bind(this));
     this.slider.style.height = this.slides[0].querySelector('img').offsetHeight + 'px';
 };
 simpleSlider.prototype.rightFadeIn = function(){
     var current = this.counter === this.slides.length ? 0 : this.counter;
     var previous = current === 0 ? this.slides.length - 1 : current - 1;
+    var next = current === this.slides.length -1 ? 0 : current + 1;
     this.slides[previous].style.opacity = 0;
+    this.slides[next].style.opacity = 0;
     this.slides[current].style.opacity = 1;
     this.counter = this.counter === this.slides.length ? 0 : this.counter;
     this.counter++;
+};
+simpleSlider.prototype.leftFadeIn = function(){
+    var current = this.counter === -1 ? this.slides.length -1 : this.counter;
+    var previous = current === this.slides.length -1 ? 0 : current + 1;
+    this.slides[previous].style.opacity = 0;
+    this.slides[current].style.opacity = 1;
+    this.counter = this.counter === 0 ? this.slides.length : this.counter;
+    this.counter--;
+};
+simpleSlider.prototype.fadeInNavigation = function(){
+    var left = document.createElement('p');
+    var right = document.createElement('p');
+    left.className = 'simpleLeft';
+    right.className = 'simpleRight';
+    left.style.cssText += 'position: absolute; ' +
+        'width: 25px; ' +
+        'height:25px; ' +
+        'left:15px; ' +
+        'top:50%; ' +
+        'border-left:2px solid' +  this.navigationColor + '; ' +
+        'border-bottom:2px solid' +  this.navigationColor + ';' +
+        'transform:translateY(-50%) rotate(45deg);' +
+        'cursor:pointer;' +
+        'z-index: 99';
+    right.style.cssText +=  'position: absolute;' +
+        ' width: 25px; ' +
+        'height:25px; ' +
+        'right:15px; ' +
+        'top:50%; ' +
+        'border-right:2px solid' +  this.navigationColor + '; ' +
+        'border-bottom:2px solid' +  this.navigationColor + ';' +
+        'transform:translateY(-50%) rotate(-45deg);' +
+        'cursor:pointer;' +
+        'z-index: 99';
+    this.slider.parentNode.append(left, right);
+    left.addEventListener('click', function(){
+        this.counter--;
+        this.leftFadeIn();
+        this.stopInterval();
+        this.intervalFadeIn();
+    }.bind(this));
+    right.addEventListener('click', function(){
+        this.counter--;
+        this.rightFadeIn();
+        this.stopInterval();
+        this.intervalFadeIn()
+    }.bind(this));
 };
 
 /* End fade in */
@@ -128,7 +179,7 @@ simpleSlider.prototype.init = function () {
     if(this.type === 'fadeIn'){
         this.fadeInStyle();
         this.intervalFadeIn();
-        this.slideNavigation();
+        this.fadeInNavigation();
     } else {
         this.slideStyle();
         this.intervalSlide();
